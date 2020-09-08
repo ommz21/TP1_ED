@@ -35,17 +35,23 @@ TMPOUT=tp1.testresult
 # CMD sao os comandos necessarios para executar a regra (por exemplo, chamar o
 # gcc)
 
-$(EXEC): main.cc foo.o
-	$(CC) $(CFLAGS) main.cc foo.o -o $(EXEC)
+$(EXEC): main.cc celula.o aguarda.o combate.o avariada.o
+	$(CC) $(CFLAGS) main.cc celula.o aguarda.o combate.o avariada.o -o $(EXEC)
 
-foo.o: headers/foo.cc # esse eh um exemplo, nao utilize esse tipo de nome (foo.cc, foo.h, foo.o) para seus arquivos
-	$(CC) $(CFLAGS) -c headers/foo.cc -o foo.o
+celula.o: headers/celula.o
+	$(CC) $(CFLAGS) -c headers/celula.cc -o celula.o
+aguarda.o: headers/aguarda.o
+	$(CC) $(CFLAGS) -c headers/aguarda.cc -o aguarda.o
+combate.o: headers/combate.o
+	$(CC) $(CFLAGS) -c headers/combate.cc -o combate.o
+avariada.o: headers/avariada.o
+	$(CC) $(CFLAGS) -c headers/avariada.cc -o avariada.o
 
 test: $(EXEC)
 	@bash run_tests.sh $(EXEC) $(TMPOUT)
 
 clean: # remove todos os arquivos temporarios que forem gerados pela compilacao
-	rm -rf foo.o
+	rm -rf celula.o aguarda.o combate.o avariada.o
 
 # === OUTROS =====
 # ================
