@@ -40,9 +40,9 @@ int Avariada::RemoveNave()
     TipoCelula *nave_retirada;
     if(tamanho == 0)
         throw std::invalid_argument("Nao possui nenhuma nave avariada.");
-    nave_retirada = celula_cabeca->prox;
-    celula_cabeca->prox = nave_retirada->prox;
-    id_nave_retirada = nave_retirada->item;
+    nave_retirada = celula_cabeca;
+    id_nave_retirada = nave_retirada->prox->item;
+    celula_cabeca = nave_retirada->prox;
     delete nave_retirada;
     tamanho--;
     return id_nave_retirada;
@@ -54,7 +54,7 @@ void Avariada::Limpa()
     while(tamanho)
     {
         removida = celula_cabeca->prox;
-        celula_cabeca->prox = removida->prox;
+        celula_cabeca = removida->prox;
         delete removida;
         tamanho--;
     }
