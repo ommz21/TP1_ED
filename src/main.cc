@@ -46,6 +46,6 @@ int main()
                 naves_avariadas.AdicionaNave(id_nave);
                 break;
         }
-    }    
+    }
     return 0;
 }

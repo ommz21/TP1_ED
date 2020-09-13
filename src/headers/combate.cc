@@ -63,12 +63,13 @@ int Combate::RemoveNave(int nave)
 void Combate::Limpa()
 {
     TipoCelula *removida;
-    while(tamanho)
+    removida = celula_cabeca->prox;
+    while(removida != nullptr)
     {
-        removida = celula_cabeca->prox;
         celula_cabeca->prox = removida->prox;
         delete removida;
-        tamanho--;
+        removida = celula_cabeca->prox;
     }
     ultima_nave = celula_cabeca;
+    tamanho = 0;
 }

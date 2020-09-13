@@ -49,13 +49,14 @@ int Aguarda::RemoveNave()
 void Aguarda::Limpa()
 {
     TipoCelula *removida;
-    while(tamanho)
+    removida = nave_mais_apta;
+    while(removida != nullptr)
     {
-        removida = nave_mais_apta;
         nave_mais_apta = nave_mais_apta->prox;
         delete removida;
-        tamanho--;
+        removida = nave_mais_apta;
     }
+    tamanho = 0;
 }
 
 void Aguarda::ImprimeNaves()

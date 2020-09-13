@@ -9,9 +9,10 @@
 # e eh chamada atraves do comando $(VAR)
 
 CC=g++ # compilador, troque para gcc se preferir utilizar C
-CFLAGS=-Wall -Wextra # compiler flags, troque o que quiser, exceto bibliotecas externas
+CFLAGS=-g -Wall -Wextra # compiler flags, troque o que quiser, exceto bibliotecas externas
 EXEC=./tp1 # nome do executavel que sera gerado, nao troque
 TMPOUT=tp1.testresult
+MEM_LEAK=valgrind --leak-check=full --track-origins=yes --show-reachable=yes 
 
 # === REGRAS =====
 # ================
@@ -49,9 +50,10 @@ avariada.o: headers/avariada.o
 
 test: $(EXEC)
 	@bash run_tests.sh $(EXEC) $(TMPOUT)
-
+memcheck: $(EXEC) # Execucao usando valgrind para verificar se o codigo possui algum leak de memoria
+	$(MEM_LEAK)$(EXEC)
 clean: # remove todos os arquivos temporarios que forem gerados pela compilacao
-	rm -rf celula.o aguarda.o combate.o avariada.o
+	rm -rf celula.o aguarda.o combate.o avariada.o tp1
 
 # === OUTROS =====
 # ================

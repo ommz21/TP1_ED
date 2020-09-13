@@ -51,14 +51,14 @@ int Avariada::RemoveNave()
 void Avariada::Limpa()
 {
     TipoCelula *removida;
-    while(tamanho)
+    removida = celula_cabeca;
+    while(removida != nullptr)
     {
-        removida = celula_cabeca->prox;
         celula_cabeca = removida->prox;
         delete removida;
-        tamanho--;
+        removida = celula_cabeca;
     }
-    ultima_nave = celula_cabeca;
+    tamanho = 0;
 }
 
 void Avariada::ImprimeNaves()
