@@ -3,18 +3,15 @@
 
 #include "celula.h"
 
-//Assinatura dos atributos e metodos da classe Combate
+//Assinatura dos atributos e metodos da classe Combate que eh uma lista encadeada
 class Combate
 {
     public:
         Combate();
         ~Combate();
-        int GetTamanho();
-        bool Vazia();
         void AdicionaNave(int nave);
         TipoCelula* PosicionaAntes(int nave);
         int RemoveNave(int nave);
-        void Limpa();
 
     private:
         int tamanho;

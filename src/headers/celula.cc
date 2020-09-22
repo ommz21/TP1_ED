@@ -3,6 +3,6 @@
 //Implementacao dos metodo construtor da classe TipoCelula.
 TipoCelula::TipoCelula()
 {
-    item = -1;
-    prox = nullptr;
+    id_nave = -1;
+    prox_nave = nullptr;
 }

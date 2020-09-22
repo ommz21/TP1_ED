@@ -3,17 +3,14 @@
 
 #include "celula.h"
 
-//Assinatura dos atributos e metodos da classe Aguarda
+//Assinatura dos atributos e metodos da classe Aguarda que eh uma pilha encadeada
 class Aguarda
 {
     public:
         Aguarda();
         ~Aguarda();
-        int GetTamanho();
-        bool Vazia();
         void AdicionaNave(int nave);
         int RemoveNave();
-        void Limpa();
         void ImprimeNaves();
 
     private:

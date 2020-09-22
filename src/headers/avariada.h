@@ -3,23 +3,20 @@
 
 #include "celula.h"
 
-//Assinatura dos atributos e metodos da classe Avariada
+//Assinatura dos atributos e metodos da classe Avariada que eh uma fila encadeada
 class Avariada
 {
     public:
         Avariada();
         ~Avariada();
-        int GetTamanho();
-        bool Vazia();
         void AdicionaNave(int nave);
         int RemoveNave();
-        void Limpa();
         void ImprimeNaves();
 
     private:
         int tamanho;
-        TipoCelula* celula_cabeca;
-        TipoCelula* ultima_nave;
+        TipoCelula* frente;
+        TipoCelula* tras;
 };
 
 #endif // AVARIADA_H

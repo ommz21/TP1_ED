@@ -8,8 +8,10 @@ class TipoCelula
         TipoCelula();
 
     private:
-        int item;
-        TipoCelula *prox;
+        int id_nave;
+        TipoCelula *prox_nave;
+
+        //Permite que as TADs possam acessar os atributos privados de TipoCelula
         friend class Aguarda;
         friend class Combate;
         friend class Avariada;

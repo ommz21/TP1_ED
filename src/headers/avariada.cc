@@ -1,72 +1,61 @@
 #include <iostream>
 #include "avariada.h"
 
-//Implementacao dos metodos da classe Avariada.
+//Implementacao do metodo construtor da classe Avariada(a fila possui uma celula cabeca).
 Avariada::Avariada()
 {
     tamanho = 0;
-    celula_cabeca = new TipoCelula;
-    ultima_nave = celula_cabeca;
+    frente = new TipoCelula;
+    tras = frente;
 }
 
+//Desaloca todas as celulas alocadas pela fila(inclusive a celula cabeca)
 Avariada::~Avariada()
 {
-    Limpa();
-    delete celula_cabeca;
+    TipoCelula *removida;
+    removida = frente;
+    while(removida != nullptr)
+    {
+        frente = removida->prox_nave;
+        delete removida;
+        removida = frente;
+    }
+    tamanho = 0;
+    delete frente;
 }
 
-int Avariada::GetTamanho()
-{
-    return tamanho;
-}
-
-bool Avariada::Vazia()
-{
-    return tamanho == 0;
-}
-
+//Equivalente ao metodo Enfileira visto em aula
 void Avariada::AdicionaNave(int nave)
 {
     TipoCelula *nova = new TipoCelula();
-    nova->item = nave;
-    ultima_nave->prox = nova;
-    ultima_nave = nova;
+    nova->id_nave = nave;
+    tras->prox_nave = nova;
+    tras = nova;
     tamanho++;
 }
 
+//Equivalente ao metodo Desenfileira visto em aula
 int Avariada::RemoveNave()
 {
     int id_nave_retirada;
     TipoCelula *nave_retirada;
     if(tamanho == 0)
         throw std::invalid_argument("Nao possui nenhuma nave avariada.");
-    nave_retirada = celula_cabeca;
-    id_nave_retirada = nave_retirada->prox->item;
-    celula_cabeca = nave_retirada->prox;
+    nave_retirada = frente;
+    id_nave_retirada = nave_retirada->prox_nave->id_nave;
+    frente = nave_retirada->prox_nave;
     delete nave_retirada;
     tamanho--;
     return id_nave_retirada;
 }
 
-void Avariada::Limpa()
-{
-    TipoCelula *removida;
-    removida = celula_cabeca;
-    while(removida != nullptr)
-    {
-        celula_cabeca = removida->prox;
-        delete removida;
-        removida = celula_cabeca;
-    }
-    tamanho = 0;
-}
-
+//Percorre toda a fila imprimindo os identificadores(percorre a fila indo da celula cabeca ate a ultima nave)
 void Avariada::ImprimeNaves()
 {
-    TipoCelula *atual = celula_cabeca->prox;
+    TipoCelula *atual = frente->prox_nave;
     while(atual != nullptr)
     {
-        printf("%d\n", atual->item);
-        atual = atual->prox;
+        printf("%d\n", atual->id_nave);
+        atual = atual->prox_nave;
     }
 }
