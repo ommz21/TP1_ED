@@ -51,6 +51,8 @@ int Aguarda::RemoveNave()
 void Aguarda::ImprimeNaves()
 {
     TipoCelula *atual = nave_mais_apta;
+    if(tamanho == 0)
+        throw std::invalid_argument("Nao possui nenhuma nave aguardado.");
     while(atual != nullptr)
     {
         printf("%d\n", atual->id_nave);

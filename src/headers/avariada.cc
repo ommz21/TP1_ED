@@ -53,6 +53,8 @@ int Avariada::RemoveNave()
 void Avariada::ImprimeNaves()
 {
     TipoCelula *atual = frente->prox_nave;
+    if(tamanho == 0)
+        throw std::invalid_argument("Nao possui nenhuma nave avariada.");
     while(atual != nullptr)
     {
         printf("%d\n", atual->id_nave);
