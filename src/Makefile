@@ -20,9 +20,11 @@ combate.o: headers/combate.o
 avariada.o: headers/avariada.o
 	$(CC) $(CFLAGS) -c headers/avariada.cc -o avariada.o
 
+all: $(EXEC)
+	$(EXEC)
 test: $(EXEC)
 	@bash run_tests.sh $(EXEC) $(TMPOUT)
 memcheck: $(EXEC) # Execucao usando valgrind para verificar se o codigo possui algum leak de memoria
 	$(MEM_LEAK)$(EXEC)
 clean: # remove todos os arquivos temporarios que forem gerados pela compilacao
-	rm -rf celula.o aguarda.o combate.o avariada.o tp1
+	rm -rf celula.o aguarda.o combate.o avariada.o tp1 headers/celula.o headers/aguarda.o headers/combate.o headers/avariada.o
